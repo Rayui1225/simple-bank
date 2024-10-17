@@ -10,10 +10,10 @@ import (
 )
 
 type DBTX interface {
-	ExecContext(context.Context, string, ...interface{}) (sql.Result, error) //execute no return query
-	PrepareContext(context.Context, string) (*sql.Stmt, error)  // prepare statement for reuse
-	QueryContext(context.Context, string, ...interface{}) (*sql.Rows, error) //execute query for multiple rows returned values
-	QueryRowContext(context.Context, string, ...interface{}) *sql.Row //execute query for one row returned value
+	ExecContext(context.Context, string, ...interface{}) (sql.Result, error)
+	PrepareContext(context.Context, string) (*sql.Stmt, error)
+	QueryContext(context.Context, string, ...interface{}) (*sql.Rows, error)
+	QueryRowContext(context.Context, string, ...interface{}) *sql.Row
 }
 
 func New(db DBTX) *Queries {
@@ -24,7 +24,7 @@ type Queries struct {
 	db DBTX
 }
 
-func (q *Queries) WithTx(tx *sql.Tx) *Queries { //create a new queries instance use sql.Tx
+func (q *Queries) WithTx(tx *sql.Tx) *Queries {
 	return &Queries{
 		db: tx,
 	}

@@ -1,6 +1,9 @@
 version: "1"
 packages:
-  - path: "db"
-    queries: "./sqlc/query/"
-    schema: "./sqlc/schema/"
+  - path: "./db/sqlc"
+    queries: "./db/query/"
+    name: "db"
+    schema: "./db/sqlc/schema/"
     engine: "postgresql"
+    emit_empty_slices: true
+    emit_interface: true
